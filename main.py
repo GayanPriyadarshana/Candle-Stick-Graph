@@ -18,7 +18,7 @@ app.layout = html.Div([
         className="dropdown",
         id='dec-code-filter',
         options=unique_dec_code,
-        value='DEC1M2'
+        value='DEC10M10'
     ),
     dcc.Graph(id="graph"),
 ])
@@ -37,7 +37,29 @@ def display_candlestick(value):
         close=filtered_df['Close']
     ))
 
+    fig.update_layout(xaxis_rangeslider_visible=False)
+
+    fig.update_layout(
+    xaxis=dict(
+        showline=True,
+        showgrid=False,
+        showticklabels=True,
+        #linecolor='rgb(204, 204, 204)',
+        linewidth=1,
+        ticks='outside',
+        tickfont=dict(
+            family='Arial',
+            size=12,
+            color='rgb(82, 82, 82)')))
+
+    # Change background color to white
+    fig.update_layout(plot_bgcolor='white')
+    fig.update_xaxes(showline=True, linewidth=0.5, linecolor='gray', showticklabels=True)
+    fig.update_yaxes(showline=True, linewidth=0.5, linecolor='gray')
+
     return fig
+
+
 
 
 if __name__ == '__main__':
